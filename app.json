@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "EventRadarUINSGD_app",
+    "name": "Event Radar UIN SGD",
     "slug": "EventRadarUINSGD_app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "eventradaruinsgdapp",
+    "scheme": "event",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
