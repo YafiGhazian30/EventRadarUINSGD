@@ -1,25 +1,36 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { View, Text } from 'react-native'; // Hapus jika tidak digunakan
 
 const TabLayout = () => {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
+      
+      {/* Home (index) diletakkan PALING ATAS agar menjadi default screen saat aplikasi dibuka.
+        Gunakan `href: null` untuk menyembunyikannya dari Tab Bar bawah.
+      */}
       <Tabs.Screen 
         name="index" 
-        options={{ title: 'Home' }} 
+        options={{
+          href: null,
+        }} 
+      />
+
+      {/* Tab-tab yang ditampilkan di bawah */}
+      <Tabs.Screen 
+        name="schedule" 
+        options={{ title: 'Schedule' }} 
       />
       <Tabs.Screen 
-        name="search" 
-        options={{ title: 'Search' }} 
+        name="chat" 
+        options={{ title: 'Chat' }} 
       />
       <Tabs.Screen 
-        name="bookmarked" 
-        options={{ title: 'Bookmarked' }} 
+        name="bookmark" 
+        options={{ title: 'Bookmark' }} 
       />
       <Tabs.Screen 
-        name="notification" 
-        options={{ title: 'Notification' }} 
+        name="history" 
+        options={{ title: 'History Event' }} 
       />
       <Tabs.Screen 
         name="profile" 

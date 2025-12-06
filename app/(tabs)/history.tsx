@@ -3,10 +3,10 @@ import React from 'react';
 import { router } from 'expo-router'; // 1. Import router
 import { Ionicons } from '@expo/vector-icons'; // Optional: Import icon panah
 
-const Profile = () => {
+const history = () => {
   return (
     <View className="flex-1 justify-center items-center bg-white">
-      <Text className="text-2xl font-bold mb-5">Profile</Text>
+      <Text className="text-2xl font-bold mb-5">History</Text>
 
       {/* Tombol Kembali Manual */}
       <TouchableOpacity
@@ -22,4 +22,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default history;
