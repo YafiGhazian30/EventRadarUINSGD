@@ -12,7 +12,7 @@ module.exports = {
         lightgrey: '#7D7D7D',
         grey: '#374B4A',
         icon: '#21194E',
-        border: '#000000'
+        black: '#000000'
       }
     },
   },

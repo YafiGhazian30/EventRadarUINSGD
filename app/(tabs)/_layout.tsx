@@ -5,16 +5,11 @@ import icons from '@/constants/icons';
 
 const TabIcon = ({ icon, focused }: { icon: ImageSourcePropType; focused: boolean }) => {
   if (focused) {
-    // Tampilan ketika Tab AKTIF (Menjadi Lingkaran & Mengapung)
+    // Tampilan ketika Tab AKTIF
     return (
       <View className="items-center justify-center">
-        <View 
-          className="w-16 h-16 rounded-full items-center justify-center -mt-0"
-          style={{ 
-            backgroundColor: '#C5FFFD', // Warna Cyan muda saat aktif
-            borderWidth: 4,
-            borderColor: '#8686AA', // Warna border agar menyatu dengan tab
-          }}
+        <View
+          className="w-16 h-16 rounded-full items-center justify-center -mt-0 bg-primary border-4 border-accent"
         >
           <Image
             source={icon}
@@ -26,7 +21,7 @@ const TabIcon = ({ icon, focused }: { icon: ImageSourcePropType; focused: boolea
     );
   }
 
-  // Tampilan ketika Tab TIDAK AKTIF (Normal)
+  // Tampilan ketika Tab TIDAK AKTIF
   return (
     <View 
       className="items-center justify-center gap-1"
@@ -35,7 +30,7 @@ const TabIcon = ({ icon, focused }: { icon: ImageSourcePropType; focused: boolea
       <Image
         source={icon}
         resizeMode="contain"
-        style={{ width: 26, height: 26, tintColor: '#1A1A2E' }} 
+        style={{ width: 26, height: 26, tintColor: '#21194E' }} 
       />
     </View>
   );
@@ -48,7 +43,7 @@ const TabLayout = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-            backgroundColor: '#8686AA', // Warna ungu keabu-abuan
+            backgroundColor: '#8686AA', 
             borderTopLeftRadius: 16,
             borderTopRightRadius: 16,
             height: 80,
@@ -111,6 +106,7 @@ const TabLayout = () => {
         }}
       />
 
+      {/* Screen yang disembunyikan dari tab bar */}
       <Tabs.Screen 
         name="search" 
         options={{
