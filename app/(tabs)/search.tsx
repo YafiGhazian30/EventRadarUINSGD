@@ -71,11 +71,11 @@ const Search = () => {
               className="w-16 h-16 mb-4 tint-lightgrey"
               style={{ tintColor: '#D1D5DB' }}
             />
-            <Text className="text-gray-400 font-medium">Type to search events...</Text>
+            <Text className="text-gray-400 font-medium">Ketik untuk mencari event...</Text>
           </View>
         ) : (
           <View>
-            <Text className="text-base font-bold text-black mb-4">Results for "{query}"</Text>
+            <Text className="text-base font-bold text-black mb-4">Hasil untuk "{query}"</Text>
             {/* Dummy Result Item */}
             <View className="w-full h-24 bg-secondary rounded-xl mb-3 flex-row p-3 border border-gray-100">
                 <View className="w-16 h-16 bg-white/40 rounded-lg mr-3" />
