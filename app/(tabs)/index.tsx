@@ -12,7 +12,7 @@ const Home = () => {
       <View className="px-5 pb-6 bg-secondary rounded-b-[16px] pt-3">
         
         <Text className="text-lg font-bold text-black mb-3">
-          Event Radar UIN
+          Event Radar UIN SGD
         </Text>
 
         <View className="flex-row items-center gap-4">
