@@ -1,25 +1,81 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 import React from 'react';
-import { router } from 'expo-router'; // 1. Import router
-import { Ionicons } from '@expo/vector-icons'; // Optional: Import icon panah
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const bookmark = () => {
+const Bookmark = () => {
   return (
-    <View className="flex-1 justify-center items-center bg-white">
-      <Text className="text-2xl font-bold mb-5">Bookmarked</Text>
+    // edges={['top']} agar header menyentuh status bar, tapi konten bawah tidak terpotong navbar
+    <SafeAreaView className="flex-1 bg-primary" edges={['top']}>
+      
+      {/* --- HEADER SECTION --- */}
+      {/* UPDATE: Menambahkan 'items-center' agar teks berada di tengah */}
+      <View className="px-5 pb-6 bg-secondary rounded-b-[16px] pt-6 shadow-sm items-center">
+        <Text className="text-2xl font-bold text-black">
+          Event yang Anda Simpan
+        </Text>
+      </View>
 
-      {/* Tombol Kembali Manual */}
-      <TouchableOpacity
-        onPress={() => router.navigate('/')} // 2. Arahkan kembali ke route '/' (Home)
-        className="flex-row items-center bg-gray-200 px-5 py-3 rounded-full mt-4"
+      {/* --- CONTENT SECTION --- */}
+      <ScrollView 
+        className="flex-1 px-5 mt-6" 
+        showsVerticalScrollIndicator={false}
       >
-        {/* Ikon Panah Kiri (Optional) */}
-        <Ionicons name="arrow-back" size={24} color="black" style={{ marginRight: 8 }} />
-        
-        <Text className="text-lg font-semibold">Kembali ke Home</Text>
-      </TouchableOpacity>
-    </View>
+        {/* Contoh Item Bookmark 1 */}
+        <View className="w-full h-32 bg-secondary rounded-xl mb-4 p-4 flex-row items-center border border-gray-100 shadow-sm">
+            {/* Placeholder Gambar Event */}
+            <View className="w-24 h-24 bg-white/40 rounded-lg mr-4" />
+            
+            {/* Info Event */}
+            <View className="flex-1 justify-center">
+                <Text className="text-lg font-bold text-black mb-1" numberOfLines={1}>
+                  Workshop React Native
+                </Text>
+                <Text className="text-sm text-gray-700 mb-2">
+                  Aula UIN SGD
+                </Text>
+                <View className="self-start bg-white/50 px-2 py-1 rounded-md">
+                  <Text className="text-xs text-black font-medium">12 Okt 2023</Text>
+                </View>
+            </View>
+        </View>
+
+        {/* Contoh Item Bookmark 2 */}
+        <View className="w-full h-32 bg-secondary rounded-xl mb-4 p-4 flex-row items-center border border-gray-100 shadow-sm">
+            <View className="w-24 h-24 bg-white/40 rounded-lg mr-4" />
+            <View className="flex-1 justify-center">
+                <Text className="text-lg font-bold text-black mb-1" numberOfLines={1}>
+                  Seminar Teknologi AI
+                </Text>
+                <Text className="text-sm text-gray-700 mb-2">
+                  Gedung Anwar Musaddad
+                </Text>
+                <View className="self-start bg-white/50 px-2 py-1 rounded-md">
+                  <Text className="text-xs text-black font-medium">15 Okt 2023</Text>
+                </View>
+            </View>
+        </View>
+
+        {/* Contoh Item Bookmark 3 */}
+        <View className="w-full h-32 bg-secondary rounded-xl mb-4 p-4 flex-row items-center border border-gray-100 shadow-sm">
+            <View className="w-24 h-24 bg-white/40 rounded-lg mr-4" />
+            <View className="flex-1 justify-center">
+                <Text className="text-lg font-bold text-black mb-1" numberOfLines={1}>
+                  Festival Budaya 2024
+                </Text>
+                <Text className="text-sm text-gray-700 mb-2">
+                  Lapangan Utama
+                </Text>
+                <View className="self-start bg-white/50 px-2 py-1 rounded-md">
+                  <Text className="text-xs text-black font-medium">20 Nov 2023</Text>
+                </View>
+            </View>
+        </View>
+
+        {/* Spacer agar konten paling bawah tidak tertutup Bottom Tab yang floating */}
+        <View className="h-28" />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
-export default bookmark;
+export default Bookmark;
