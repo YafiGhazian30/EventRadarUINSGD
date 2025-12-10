@@ -1,57 +1,114 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-import React from 'react';
+import { View, Text, TouchableOpacity, Image, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '@/context/AuthContext';
-import icons from '@/constants/icons'; // Pastikan path icon benar
+import icons from '@/constants/icons';
+import { Link, useRouter } from 'expo-router';
 
 const Login = () => {
   const { signIn } = useAuth();
+  const router = useRouter();
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      alert('Mohon isi Email dan Password');
+      return;
+    }
+    setIsSubmitting(true);
+
+    try {
+      // --- LOGIKA LOGIN USER ---
+      // Ganti dengan API call yang sebenarnya nanti
+      console.log("Login User:", email, password);
+      
+      signIn('user'); // Masuk sebagai User
+    } catch (error) {
+      alert('Login Gagal');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <SafeAreaView className="flex-1 bg-white justify-center px-6">
-      <View className="items-center mb-10">
-        {/* Logo atau Icon Aplikasi */}
-        <View className="w-24 h-24 bg-primary rounded-full items-center justify-center mb-4 border-4 border-accent">
-           <Image 
-             source={icons.home} 
-             className="w-12 h-12" 
-             style={{ tintColor: '#21194E' }} 
-             resizeMode='contain'
-           />
-        </View>
-        <Text className="text-3xl font-bold text-black text-center">
-          Event Radar UIN
-        </Text>
-        <Text className="text-gray-500 text-center mt-2">
-          Silakan pilih role untuk masuk (Simulasi)
-        </Text>
-      </View>
+    <SafeAreaView className="flex-1 bg-white h-full">
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} className="flex-1">
+        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 24 }}>
+          
+          <View className="items-center mb-8">
+            <View className="w-20 h-20 bg-primary rounded-full items-center justify-center mb-4 border-2 border-accent">
+               <Image source={icons.home} className="w-10 h-10" style={{ tintColor: '#21194E' }} resizeMode='contain' />
+            </View>
+            <Text className="text-2xl font-bold text-black text-center">Halo, Mahasiswa!</Text>
+            <Text className="text-gray-500 text-center mt-1">Masuk untuk melihat event kampus</Text>
+          </View>
 
-      <View className="gap-4">
-        {/* Tombol Login USER */}
-        <TouchableOpacity 
-          onPress={() => signIn('user')}
-          className="w-full bg-secondary p-4 rounded-xl border border-gray-200 shadow-sm items-center flex-row justify-center"
-        >
-          <Text className="text-black font-bold text-lg">Login as User</Text>
-        </TouchableOpacity>
+          <View className="gap-4">
+            <View>
+              <Text className="text-gray-700 font-medium mb-2">Email / Username</Text>
+              <TextInput 
+                className="w-full h-12 bg-gray-50 border border-gray-200 rounded-xl px-4 text-black focus:border-secondary"
+                placeholder="Masukan email..."
+                value={email}
+                onChangeText={setEmail}
+                autoCapitalize="none"
+              />
+            </View>
 
-        {/* Tombol Login ORGANIZER */}
-        <TouchableOpacity 
-          onPress={() => signIn('organizer')}
-          className="w-full bg-primary p-4 rounded-xl border border-gray-200 shadow-sm items-center flex-row justify-center"
-        >
-          <Text className="text-black font-bold text-lg">Login as Organizer</Text>
-        </TouchableOpacity>
+            <View>
+              <Text className="text-gray-700 font-medium mb-2">Password</Text>
+              <TextInput 
+                className="w-full h-12 bg-gray-50 border border-gray-200 rounded-xl px-4 text-black focus:border-secondary"
+                placeholder="Masukan password..."
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+              />
+            </View>
 
-        {/* Tombol Login ADMIN */}
-        <TouchableOpacity 
-          onPress={() => signIn('admin')}
-          className="w-full bg-accent p-4 rounded-xl border border-gray-200 shadow-sm items-center flex-row justify-center"
-        >
-          <Text className="text-white font-bold text-lg">Login as Admin</Text>
-        </TouchableOpacity>
-      </View>
+            <TouchableOpacity 
+              onPress={handleLogin}
+              className="w-full bg-secondary h-14 rounded-xl items-center justify-center mt-4 shadow-sm"
+              disabled={isSubmitting}
+            >
+              <Text className="text-black font-bold text-lg">{isSubmitting ? 'Memproses...' : 'Masuk'}</Text>
+            </TouchableOpacity>
+
+            <View className="flex-row justify-center mt-2">
+              <Text className="text-gray-500">Belum punya akun? </Text>
+              <Link href="/register" asChild>
+                <TouchableOpacity>
+                  <Text className="text-primary font-bold">Daftar Sekarang</Text>
+                </TouchableOpacity>
+              </Link>
+            </View>
+          </View>
+
+          <View className="flex-row items-center my-8">
+            <View className="flex-1 h-[1px] bg-gray-200" />
+            <Text className="mx-4 text-gray-400 text-xs">ATAU MASUK SEBAGAI</Text>
+            <View className="flex-1 h-[1px] bg-gray-200" />
+          </View>
+
+          <View className="flex-row justify-between gap-4">
+            <Link href="/login-organizer" asChild>
+              <TouchableOpacity className="flex-1 bg-white border border-primary py-3 rounded-lg items-center">
+                <Text className="text-primary font-semibold">Organizer</Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/login-admin" asChild>
+              <TouchableOpacity className="flex-1 bg-white border border-accent py-3 rounded-lg items-center">
+                <Text className="text-accent font-semibold">Admin</Text>
+              </TouchableOpacity>
+            </Link>
+          </View>
+
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
