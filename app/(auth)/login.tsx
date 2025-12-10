@@ -52,6 +52,7 @@ const Login = () => {
               <TextInput 
                 className="w-full h-12 bg-gray-50 border border-gray-200 rounded-xl px-4 text-black focus:border-secondary"
                 placeholder="Masukan email..."
+                placeholderTextColor="#9CA3AF"
                 value={email}
                 onChangeText={setEmail}
                 autoCapitalize="none"
@@ -63,6 +64,7 @@ const Login = () => {
               <TextInput 
                 className="w-full h-12 bg-gray-50 border border-gray-200 rounded-xl px-4 text-black focus:border-secondary"
                 placeholder="Masukan password..."
+                placeholderTextColor="#9CA3AF"
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
@@ -81,28 +83,18 @@ const Login = () => {
               <Text className="text-gray-500">Belum punya akun? </Text>
               <Link href="/register" asChild>
                 <TouchableOpacity>
-                  <Text className="text-primary font-bold">Daftar Sekarang</Text>
+                  <Text className="text-grey font-bold">Daftar Sekarang</Text>
                 </TouchableOpacity>
               </Link>
             </View>
           </View>
 
-          <View className="flex-row items-center my-8">
-            <View className="flex-1 h-[1px] bg-gray-200" />
-            <Text className="mx-4 text-gray-400 text-xs">ATAU MASUK SEBAGAI</Text>
-            <View className="flex-1 h-[1px] bg-gray-200" />
-          </View>
-
-          <View className="flex-row justify-between gap-4">
-            <Link href="/login-organizer" asChild>
-              <TouchableOpacity className="flex-1 bg-white border border-primary py-3 rounded-lg items-center">
-                <Text className="text-primary font-semibold">Organizer</Text>
-              </TouchableOpacity>
-            </Link>
-
+          {/* --- BAGIAN YANG DIREVISI --- */}
+          <View className="flex-row justify-center items-center mt-8">
+            <Text className="text-gray-500 text-sm">Atau masuk sebagai </Text>
             <Link href="/login-admin" asChild>
-              <TouchableOpacity className="flex-1 bg-white border border-accent py-3 rounded-lg items-center">
-                <Text className="text-accent font-semibold">Admin</Text>
+              <TouchableOpacity activeOpacity={0.7}>
+                <Text className="text-accent font-bold text-sm underline ml-1">Admin</Text>
               </TouchableOpacity>
             </Link>
           </View>
