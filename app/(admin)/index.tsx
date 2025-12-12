@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useAuth } from '@/context/AuthContext'; // Pastikan path ini benar sesuai struktur folder Anda
+import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -66,7 +66,8 @@ const AdminDashboard = () => {
         <Text className="text-lg font-bold text-black mb-4">Menu Utama</Text>
         
         <View className="flex-row flex-wrap justify-between gap-y-4">
-            {/* Menu Item 1: Tambah Event (LINK KE create-event.tsx) */}
+            
+            {/* Menu Item 1: Tambah Event */}
             <TouchableOpacity 
               className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
               activeOpacity={0.7}
@@ -82,7 +83,7 @@ const AdminDashboard = () => {
             <TouchableOpacity 
               className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
               activeOpacity={0.7}
-              onPress={() => console.log('Fitur Kelola Event belum dibuat')}
+              onPress={() => router.push('/(admin)/manage-events')}
             >
                 <View className="w-14 h-14 bg-purple-50 rounded-full items-center justify-center">
                     <Ionicons name="list" size={30} color="#8B5CF6" />
@@ -90,11 +91,11 @@ const AdminDashboard = () => {
                 <Text className="font-bold text-gray-800 text-center">Kelola Event</Text>
             </TouchableOpacity>
 
-            {/* Menu Item 3: Validasi Peserta */}
+            {/* Menu Item 3: Validasi Peserta (Placeholder) */}
             <TouchableOpacity 
               className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
               activeOpacity={0.7}
-              onPress={() => console.log('Fitur Validasi belum dibuat')}
+              onPress={() => Alert.alert("Fitur", "Halaman Validasi Peserta belum dibuat.")}
             >
                 <View className="w-14 h-14 bg-green-50 rounded-full items-center justify-center">
                     <Ionicons name="checkmark-done-circle" size={30} color="#10B981" />
@@ -102,11 +103,11 @@ const AdminDashboard = () => {
                 <Text className="font-bold text-gray-800 text-center">Validasi Peserta</Text>
             </TouchableOpacity>
 
-            {/* Menu Item 4: Laporan */}
+            {/* Menu Item 4: Laporan (Placeholder) */}
             <TouchableOpacity 
               className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
               activeOpacity={0.7}
-              onPress={() => console.log('Fitur Laporan belum dibuat')}
+              onPress={() => Alert.alert("Fitur", "Halaman Laporan belum dibuat.")}
             >
                 <View className="w-14 h-14 bg-orange-50 rounded-full items-center justify-center">
                     <Ionicons name="stats-chart" size={30} color="#F59E0B" />
