@@ -26,7 +26,7 @@ const AdminDashboard = () => {
   return (
     <SafeAreaView className="flex-1 bg-gray-50" edges={['top']}>
       
-      {/* --- HEADER SECTION --- */}
+      {/* --- HEADER --- */}
       <View className="bg-secondary px-6 pb-8 pt-4 rounded-b-[30px] shadow-sm">
         <View className="flex-row justify-between items-center">
           <View>
@@ -59,15 +59,13 @@ const AdminDashboard = () => {
         </View>
       </View>
 
-      {/* --- MAIN CONTENT --- */}
+      {/* --- MENU UTAMA --- */}
       <ScrollView className="flex-1 px-6 mt-6" showsVerticalScrollIndicator={false}>
-        
-        {/* Menu Grid */}
         <Text className="text-lg font-bold text-black mb-4">Menu Utama</Text>
         
         <View className="flex-row flex-wrap justify-between gap-y-4">
             
-            {/* Menu Item 1: Buat Event */}
+            {/* 1. Buat Event */}
             <TouchableOpacity 
               className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
               activeOpacity={0.7}
@@ -79,7 +77,7 @@ const AdminDashboard = () => {
                 <Text className="font-bold text-gray-800 text-center">Buat Event</Text>
             </TouchableOpacity>
 
-            {/* Menu Item 2: Kelola Event */}
+            {/* 2. Kelola Event */}
             <TouchableOpacity 
               className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
               activeOpacity={0.7}
@@ -91,27 +89,33 @@ const AdminDashboard = () => {
                 <Text className="font-bold text-gray-800 text-center">Kelola Event</Text>
             </TouchableOpacity>
 
-            {/* Menu Item 3: Laporan & Statistik (Full Width karena item ganjil) */}
+            {/* 3. Laporan */}
             <TouchableOpacity 
-              className="w-full bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex-row items-center gap-4" 
+              className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
               activeOpacity={0.7}
               onPress={() => router.push('/(admin)/reports')}
             >
                 <View className="w-14 h-14 bg-orange-50 rounded-full items-center justify-center">
                     <Ionicons name="pie-chart" size={30} color="#F59E0B" />
                 </View>
-                <View>
-                    <Text className="font-bold text-gray-800 text-lg">Laporan & Statistik</Text>
-                    <Text className="text-gray-500 text-xs">Analisis minat peserta & event populer</Text>
+                <Text className="font-bold text-gray-800 text-center">Laporan</Text>
+            </TouchableOpacity>
+
+            {/* 4. Pesan User (TOMBOL INI YANG BARU) */}
+            <TouchableOpacity 
+              className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
+              activeOpacity={0.7}
+              onPress={() => router.push('/(admin)/chat-detail')}
+            >
+                <View className="w-14 h-14 bg-pink-50 rounded-full items-center justify-center">
+                    <Ionicons name="chatbubbles" size={30} color="#EC4899" />
                 </View>
-                <View className="flex-1 items-end">
-                    <Ionicons name="chevron-forward" size={24} color="#D1D5DB" />
-                </View>
+                <Text className="font-bold text-gray-800 text-center">Pesan User</Text>
             </TouchableOpacity>
 
         </View>
 
-        {/* Recent Activity Section */}
+        {/* --- RECENT ACTIVITY --- */}
         <Text className="text-lg font-bold text-black mb-3 mt-8">Aktivitas Terbaru</Text>
         <View className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm mb-6">
             <View className="flex-row items-center border-b border-gray-100 pb-3 mb-3">
@@ -120,9 +124,9 @@ const AdminDashboard = () => {
                 <Text className="text-xs text-gray-400">2m lalu</Text>
             </View>
             <View className="flex-row items-center border-b border-gray-100 pb-3 mb-3">
-                <View className="w-2 h-2 bg-blue-500 rounded-full mr-3" />
-                <Text className="flex-1 text-gray-600 text-sm">Pendaftaran baru: Ahmad (Teknik)</Text>
-                <Text className="text-xs text-gray-400">15m lalu</Text>
+                <View className="w-2 h-2 bg-pink-500 rounded-full mr-3" />
+                <Text className="flex-1 text-gray-600 text-sm">Pesan baru dari Ahmad</Text>
+                <Text className="text-xs text-gray-400">5m lalu</Text>
             </View>
             <View className="flex-row items-center">
                 <View className="w-2 h-2 bg-orange-500 rounded-full mr-3" />
