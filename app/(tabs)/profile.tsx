@@ -9,6 +9,7 @@ import { useRouter } from 'expo-router';
 const Profile = () => {
   const { signOut } = useAuth();
   const router = useRouter();
+  
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
 
   const handleLogout = () => {
@@ -30,6 +31,13 @@ const Profile = () => {
   };
 
   const menuItems = [
+    // --- MENU BARU: PREFERENSI ---
+    { 
+      title: 'Preferensi Event', 
+      icon: 'options-outline', 
+      onPress: () => router.push('/preferences') 
+    },
+    // -----------------------------
     { 
       title: 'Edit Profil', 
       icon: 'person-outline', 
@@ -48,14 +56,11 @@ const Profile = () => {
       value: 'Indonesia', 
       onPress: () => console.log('Language Clicked') 
     },
-    // --- TOMBOL HUBUNGI KAMI DIUPDATE ---
     { 
       title: 'Hubungi Kami', 
       icon: 'call-outline', 
-      // Arahkan ke halaman Chat
       onPress: () => router.push('/chat') 
     },
-    // ------------------------------------
     { 
       title: 'Bantuan & Dukungan', 
       icon: 'help-circle-outline', 
@@ -120,6 +125,7 @@ const Profile = () => {
                 >
                   <View className="flex-row items-center gap-4">
                     <View className="w-10 h-10 bg-gray-50 rounded-full items-center justify-center">
+                      {/* Icon dengan tipe any agar aman dari error TS sementara */}
                       <Ionicons name={item.icon as any} size={22} color="#21194E" />
                     </View>
                     <Text className="text-black font-medium text-base">{item.title}</Text>
