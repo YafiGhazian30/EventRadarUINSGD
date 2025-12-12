@@ -9,8 +9,6 @@ import { useRouter } from 'expo-router';
 const Profile = () => {
   const { signOut } = useAuth();
   const router = useRouter();
-  
-  // State untuk toggle notifikasi (simulasi)
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
 
   const handleLogout = () => {
@@ -23,8 +21,8 @@ const Profile = () => {
           text: "Keluar", 
           style: "destructive", 
           onPress: () => {
-            signOut(); // 1. Hapus sesi login
-            router.replace('/login'); // 2. Paksa pindah ke halaman login
+            signOut(); 
+            router.replace('/login'); 
           } 
         }
       ]
@@ -50,6 +48,14 @@ const Profile = () => {
       value: 'Indonesia', 
       onPress: () => console.log('Language Clicked') 
     },
+    // --- TOMBOL HUBUNGI KAMI DIUPDATE ---
+    { 
+      title: 'Hubungi Kami', 
+      icon: 'call-outline', 
+      // Arahkan ke halaman Chat
+      onPress: () => router.push('/chat') 
+    },
+    // ------------------------------------
     { 
       title: 'Bantuan & Dukungan', 
       icon: 'help-circle-outline', 
@@ -66,7 +72,7 @@ const Profile = () => {
     <SafeAreaView className="flex-1 bg-gray-50">
       <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
         
-        {/* Header Profil dengan Background Warna */}
+        {/* Header Profil */}
         <View className="bg-secondary pb-6 rounded-b-3xl shadow-sm border-b border-gray-100">
           <View className="items-center mt-4">
             <View className="relative">
@@ -86,7 +92,6 @@ const Profile = () => {
             <Text className="text-2xl font-bold text-black mt-4">Mahasiswa UIN</Text>
             <Text className="text-gray-500">mahasiswa@uin.ac.id</Text>
 
-            {/* Statistik Singkat */}
             <View className="flex-row mt-6 w-full justify-center gap-8 px-8">
               <View className="items-center">
                 <Text className="text-xl font-bold text-darkgrey">12</Text>
@@ -136,7 +141,6 @@ const Profile = () => {
                     </View>
                   )}
                 </TouchableOpacity>
-                {/* Divider antar menu, kecuali item terakhir */}
                 {index < menuItems.length - 1 && (
                   <View className="h-[1px] bg-gray-100 ml-16" />
                 )}
@@ -145,7 +149,7 @@ const Profile = () => {
           </View>
         </View>
 
-        {/* Tombol Logout */}
+        {/* Logout */}
         <View className="mt-8 px-6">
           <TouchableOpacity 
             onPress={handleLogout}
