@@ -30,19 +30,19 @@ const Profile = () => {
     );
   };
 
+  // Fungsi untuk menangani Edit Profil
+  const handleEditProfile = () => {
+      console.log('Tombol Edit Profil (Pensil) Diklik');
+      // Nanti di sini arahkan ke halaman edit profil, misal: router.push('/edit-profile');
+  };
+
   const menuItems = [
-    // --- MENU BARU: PREFERENSI ---
     { 
       title: 'Preferensi Event', 
       icon: 'options-outline', 
       onPress: () => router.push('/preferences') 
     },
-    // -----------------------------
-    { 
-      title: 'Edit Profil', 
-      icon: 'person-outline', 
-      onPress: () => console.log('Edit Profil Clicked') 
-    },
+    // --- ITEM 'Edit Profil' DIHAPUS DARI SINI ---
     { 
       title: 'Notifikasi', 
       icon: 'notifications-outline', 
@@ -80,6 +80,8 @@ const Profile = () => {
         {/* Header Profil */}
         <View className="bg-secondary pb-6 rounded-b-3xl shadow-sm border-b border-gray-100">
           <View className="items-center mt-4">
+            
+            {/* --- FOTO PROFIL & TOMBOL EDIT --- */}
             <View className="relative">
               <View className="w-28 h-28 bg-gray-100 rounded-full items-center justify-center border-4 border-white shadow-md">
                  <Image 
@@ -89,10 +91,17 @@ const Profile = () => {
                    resizeMode="contain"
                  />
               </View>
-              <TouchableOpacity className="absolute bottom-0 right-0 bg-secondary p-2 rounded-full border-2 border-white">
-                <Ionicons name="camera" size={16} color="black" />
+              {/* Tombol Edit (Pensil) menggantikan kamera */}
+              <TouchableOpacity 
+                onPress={handleEditProfile}
+                className="absolute bottom-0 right-0 bg-accent p-2 rounded-full border-2 border-white shadow-sm"
+                activeOpacity={0.8}
+              >
+                {/* Menggunakan icon pensil warna putih */}
+                <Ionicons name="pencil" size={18} color="white" />
               </TouchableOpacity>
             </View>
+            {/* --------------------------------- */}
 
             <Text className="text-2xl font-bold text-black mt-4">Mahasiswa UIN</Text>
             <Text className="text-gray-500">mahasiswa@uin.ac.id</Text>
@@ -125,7 +134,6 @@ const Profile = () => {
                 >
                   <View className="flex-row items-center gap-4">
                     <View className="w-10 h-10 bg-gray-50 rounded-full items-center justify-center">
-                      {/* Icon dengan tipe any agar aman dari error TS sementara */}
                       <Ionicons name={item.icon as any} size={22} color="#21194E" />
                     </View>
                     <Text className="text-black font-medium text-base">{item.title}</Text>
