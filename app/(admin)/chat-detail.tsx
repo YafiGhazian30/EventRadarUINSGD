@@ -1,11 +1,12 @@
 import { View, Text, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router'; // Tambah useLocalSearchParams
 import { Ionicons } from '@expo/vector-icons';
 
 const ChatDetailAdmin = () => {
   const router = useRouter();
+  const { userName } = useLocalSearchParams(); // Tangkap Nama User
 
   return (
     <SafeAreaView className="flex-1 bg-secondary" edges={['top', 'bottom']}>
@@ -17,7 +18,8 @@ const ChatDetailAdmin = () => {
             <Ionicons name="arrow-back" size={26} color="black" />
           </TouchableOpacity>
           <View>
-            <Text className="text-xl font-bold text-black">Ahmad (Mahasiswa)</Text>
+            {/* Tampilkan Nama Sesuai Pilihan, Default Ahmad jika kosong */}
+            <Text className="text-xl font-bold text-black">{userName || "Ahmad (Mahasiswa)"}</Text>
             <Text className="text-xs text-gray-600">Online</Text>
           </View>
         </View>
@@ -36,19 +38,18 @@ const ChatDetailAdmin = () => {
           contentContainerStyle={{ paddingBottom: 80 }}
           showsVerticalScrollIndicator={false}
         >
-            {/* Chat User (Kiri) */}
+            {/* Pesan Dummy (Statis) */}
             <View className="self-start bg-[#6B6B6B] rounded-tl-none rounded-2xl p-4 mb-4 max-w-[80%] shadow-sm">
                 <Text className="text-white text-base font-medium">Min, mau tanya statistik event saya dong</Text>
                 <Text className="text-gray-300 text-[10px] mt-1 text-right">09:41</Text>
             </View>
 
-            {/* Chat Admin (Kanan) */}
             <View className="self-end bg-[#6200EE] rounded-tr-none rounded-2xl p-4 mb-2 max-w-[80%] shadow-sm">
                 <Text className="text-white text-base font-medium">Halo kak, ini dia statistik event kamu bulan ini ya</Text>
                 <Text className="text-purple-200 text-[10px] mt-1 text-right">09:42 • Dibaca</Text>
             </View>
 
-            {/* Kartu Statistik (Kanan) */}
+            {/* Kartu Statistik */}
             <View className="self-end bg-[#6200EE] rounded-2xl p-5 mb-4 w-[85%] shadow-md overflow-hidden">
                 <View className="h-32 mb-4 flex-row items-end justify-between px-2 pb-2 border-l-4 border-b-4 border-white/80">
                     <View className="items-center gap-1"><View className="w-3 h-3 bg-white rounded-full z-10" /><View className="w-3 h-10 bg-gray-300 rounded-t-sm" /></View>
@@ -64,7 +65,6 @@ const ChatDetailAdmin = () => {
                 <Text className="text-purple-200 text-[10px] mt-2 text-right">09:42 • Dibaca</Text>
             </View>
 
-             {/* Chat User Balasan (Kiri) */}
              <View className="self-start bg-[#6B6B6B] rounded-tl-none rounded-2xl p-4 mb-4 max-w-[80%] shadow-sm">
                 <Text className="text-white text-base font-medium">Wah makasih banyak min! Sangat membantu 🙏</Text>
                 <Text className="text-gray-300 text-[10px] mt-1 text-right">09:45</Text>

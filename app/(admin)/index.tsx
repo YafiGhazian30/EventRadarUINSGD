@@ -26,7 +26,7 @@ const AdminDashboard = () => {
   return (
     <SafeAreaView className="flex-1 bg-gray-50" edges={['top']}>
       
-      {/* --- HEADER --- */}
+      {/* --- HEADER SECTION --- */}
       <View className="bg-secondary px-6 pb-8 pt-4 rounded-b-[30px] shadow-sm">
         <View className="flex-row justify-between items-center">
           <View>
@@ -59,8 +59,10 @@ const AdminDashboard = () => {
         </View>
       </View>
 
-      {/* --- MENU UTAMA --- */}
+      {/* --- MAIN CONTENT --- */}
       <ScrollView className="flex-1 px-6 mt-6" showsVerticalScrollIndicator={false}>
+        
+        {/* Menu Grid */}
         <Text className="text-lg font-bold text-black mb-4">Menu Utama</Text>
         
         <View className="flex-row flex-wrap justify-between gap-y-4">
@@ -101,11 +103,11 @@ const AdminDashboard = () => {
                 <Text className="font-bold text-gray-800 text-center">Laporan</Text>
             </TouchableOpacity>
 
-            {/* 4. Pesan User (TOMBOL INI YANG BARU) */}
+            {/* 4. Pesan User (Arahkan ke CHAT LIST) */}
             <TouchableOpacity 
               className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
               activeOpacity={0.7}
-              onPress={() => router.push('/(admin)/chat-detail')}
+              onPress={() => router.push('/(admin)/chat-list')} 
             >
                 <View className="w-14 h-14 bg-pink-50 rounded-full items-center justify-center">
                     <Ionicons name="chatbubbles" size={30} color="#EC4899" />
@@ -115,7 +117,7 @@ const AdminDashboard = () => {
 
         </View>
 
-        {/* --- RECENT ACTIVITY --- */}
+        {/* Recent Activity Section */}
         <Text className="text-lg font-bold text-black mb-3 mt-8">Aktivitas Terbaru</Text>
         <View className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm mb-6">
             <View className="flex-row items-center border-b border-gray-100 pb-3 mb-3">
