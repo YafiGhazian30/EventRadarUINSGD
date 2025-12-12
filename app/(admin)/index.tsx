@@ -67,7 +67,7 @@ const AdminDashboard = () => {
         
         <View className="flex-row flex-wrap justify-between gap-y-4">
             
-            {/* Menu Item 1: Tambah Event */}
+            {/* Menu Item 1: Buat Event */}
             <TouchableOpacity 
               className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
               activeOpacity={0.7}
@@ -91,29 +91,24 @@ const AdminDashboard = () => {
                 <Text className="font-bold text-gray-800 text-center">Kelola Event</Text>
             </TouchableOpacity>
 
-            {/* Menu Item 3: Validasi Peserta (Placeholder) */}
+            {/* Menu Item 3: Laporan & Statistik (Full Width karena item ganjil) */}
             <TouchableOpacity 
-              className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
+              className="w-full bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex-row items-center gap-4" 
               activeOpacity={0.7}
-              onPress={() => Alert.alert("Fitur", "Halaman Validasi Peserta belum dibuat.")}
-            >
-                <View className="w-14 h-14 bg-green-50 rounded-full items-center justify-center">
-                    <Ionicons name="checkmark-done-circle" size={30} color="#10B981" />
-                </View>
-                <Text className="font-bold text-gray-800 text-center">Validasi Peserta</Text>
-            </TouchableOpacity>
-
-            {/* Menu Item 4: Laporan (Placeholder) */}
-            <TouchableOpacity 
-              className="w-[48%] bg-white p-5 rounded-2xl shadow-sm border border-gray-100 items-center gap-3" 
-              activeOpacity={0.7}
-              onPress={() => Alert.alert("Fitur", "Halaman Laporan belum dibuat.")}
+              onPress={() => router.push('/(admin)/reports')}
             >
                 <View className="w-14 h-14 bg-orange-50 rounded-full items-center justify-center">
-                    <Ionicons name="stats-chart" size={30} color="#F59E0B" />
+                    <Ionicons name="pie-chart" size={30} color="#F59E0B" />
                 </View>
-                <Text className="font-bold text-gray-800 text-center">Laporan</Text>
+                <View>
+                    <Text className="font-bold text-gray-800 text-lg">Laporan & Statistik</Text>
+                    <Text className="text-gray-500 text-xs">Analisis minat peserta & event populer</Text>
+                </View>
+                <View className="flex-1 items-end">
+                    <Ionicons name="chevron-forward" size={24} color="#D1D5DB" />
+                </View>
             </TouchableOpacity>
+
         </View>
 
         {/* Recent Activity Section */}
