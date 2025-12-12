@@ -106,7 +106,7 @@ const TabLayout = () => {
         }}
       />
 
-      {/* Screen yang disembunyikan dari tab bar */}
+      {/* Screen 'search' tetap ada tapi disembunyikan dari tab bar (href: null) */}
       <Tabs.Screen 
         name="search" 
         options={{
@@ -115,13 +115,8 @@ const TabLayout = () => {
         }} 
       />
 
-      <Tabs.Screen 
-        name="notification" 
-        options={{
-          title: 'Notification',
-          href: null,
-        }} 
-      />
+      {/* BAGIAN 'notification' SUDAH DIHAPUS DARI SINI */}
+
     </Tabs>
   );
 }
