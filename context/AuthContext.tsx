@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, PropsWithChildren } from 'react';
 import { useRouter, useSegments } from 'expo-router';
 
-// HAPUS 'organizer' dari sini
 export type UserRole = 'user' | 'admin' | null;
 
 interface AuthContextType {
@@ -24,28 +23,33 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const segments = useSegments();
 
   useEffect(() => {
-    const checkAuth = async () => {
-      setIsLoading(true);
-      // Simulasi cek login
-      setIsLoading(false);
-    };
-    checkAuth();
+    // Simulasi cek login
+    setTimeout(() => setIsLoading(false), 500); 
   }, []);
 
   useEffect(() => {
     if (isLoading) return;
 
     const inAuthGroup = segments[0] === '(auth)';
+    const inAdminGroup = segments[0] === '(admin)';
     
     if (!role && !inAuthGroup) {
+      // 1. Jika belum login dan bukan di halaman login -> tendang ke login
       router.replace('/login');
-    } else if (role) {
-      if (role === 'user' && segments[0] !== '(tabs)') {
+    } else if (role === 'user') {
+      // 2. Jika USER login:
+      // - Jangan biarkan masuk ke halaman (auth) lagi
+      // - Jangan biarkan masuk ke halaman (admin)
+      // - TAPI, biarkan masuk ke (tabs) atau routes lain seperti /events
+      if (inAuthGroup || inAdminGroup) {
         router.replace('/(tabs)');
-      } else if (role === 'admin' && segments[0] !== '(admin)') {
+      }
+    } else if (role === 'admin') {
+      // 3. Jika ADMIN login:
+      // - Pastikan dia berada di folder (admin)
+      if (inAuthGroup || !inAdminGroup) {
         router.replace('/(admin)');
       } 
-      // LOGIKA REDIRECT ORGANIZER SUDAH DIHAPUS
     }
   }, [role, segments, isLoading]);
 
